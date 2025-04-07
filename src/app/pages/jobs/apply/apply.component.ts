@@ -9,6 +9,10 @@ import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
 import { fetchJobApplyData } from 'src/app/store/Job/job.action';
 import { selecDatapply } from 'src/app/store/Job/job-selector';
+import { CandidacyResponseUserDto } from 'src/app/services/models/candidacy-response-user-dto';
+import { CandidacyService } from 'src/app/services/service/candidacy.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-apply',
@@ -31,8 +35,10 @@ export class ApplyComponent implements OnInit {
   applies?: any;
   applyjob: any
   total: Observable<number>;
+  id:number;
+  jobs:CandidacyResponseUserDto[]
 
-  constructor(private modalService: BsModalService, private formBuilder: UntypedFormBuilder, public store: Store) { }
+  constructor(private modalService: BsModalService, private formBuilder: UntypedFormBuilder, public store: Store,private CandidacyService:CandidacyService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.breadCrumbItems = [{ label: 'Jobs' }, { label: 'Job Apply', active: true }];
@@ -40,53 +46,32 @@ export class ApplyComponent implements OnInit {
     /**
 * fetches data
 */
-    this.store.dispatch(fetchJobApplyData());
+    /*this.store.dispatch(fetchJobApplyData());
     this.store.select(selecDatapply).subscribe(data => {
       this.applies = data;
       this.applyjob = data;
       this.applies = this.applyjob.slice(0, 8)
-    });
+    });*/
+    this.id=Number(this.activatedRoute.snapshot.paramMap.get("id"));
+
+
+
+   this.CandidacyService.getCandidacyByCandidate(this.id).subscribe({
+      next:data=>{
+      this.jobs=data;
+      }
+   
+      ,error:error=>{
+        console.log("there is an error:",error);
+      }
+    
+    })
+    
+
   }
 
   // Delete Data
-  delete(event: any) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger ms-2'
-      },
-      buttonsStyling: false
-    });
-
-    swalWithBootstrapButtons
-      .fire({
-        title: 'Are you sure?',
-        text: 'You won\'t be able to revert this!',
-        icon: 'warning',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        showCancelButton: true
-      })
-      .then(result => {
-        if (result.value) {
-          swalWithBootstrapButtons.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          );
-          event.target.closest('tr')?.remove();
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
-            'error'
-          );
-        }
-      });
-  }
+  
 
   // pagination
   pagechanged(event: any) {
