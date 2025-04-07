@@ -1,27 +1,19 @@
 import { RouterModule, Routes } from '@angular/router';
-import { Page404Component } from './extrapages/page404/page404.component';
-import { AuthGuard } from './core/guards/auth.guard';
-import { LayoutComponent } from './layouts/layout.component';
+import { Page404Component } from './recruiter/extrapages/page404/page404.component';
+
+/*import { AuthGuard } from './candidate/core/guards/auth.guard';
+import { LayoutComponent } from './candidate/layouts/layout.component';
+import { Page404Component } from './candidate/extrapages/page404/page404.component';*/
 
 export const routes: Routes = [
-    {
-        path: "auth",
+    /*{
+        path: "candidate",
         loadChildren: () =>
-            import("./account/account.module").then((m) => m.AccountModule),
-    },
+            import("./recruiter/candidate/candidate.module").then((m) => m.CandidateModule),
+    },*/
     {
-        path: "",
-        component: LayoutComponent,
+        path: "recruiter",
         loadChildren: () =>
-            import("./pages/pages.module").then((m) => m.PagesModule),
-        canActivate: [AuthGuard],
-    },
-    {
-        path: "pages",
-        loadChildren: () =>
-            import("./extrapages/extrapages.module").then((m) => m.ExtrapagesModule),
-        canActivate: [AuthGuard],
-    },
-    
-    { path: "**", component: Page404Component },
+            import("./recruiter/recruiter.module").then((m) => m.RecruiterModule),
+    },{ path: "**", component: Page404Component },
 ];
