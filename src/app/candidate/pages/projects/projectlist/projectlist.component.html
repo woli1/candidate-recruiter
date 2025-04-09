@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <app-page-title title="Interview Date" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card bg-transparent">
+        <div class=" card-body">
+          <div class=" row mb-2">
+            <div class="col-sm">
+              <div class="search-box me-2 d-inline-block">
+                <div class="position-relative">
+                  <input type="text" class="form-control" autocomplete="off" id="searchTableList" #searchInput placeholder="Search Topic" (input)="searchJob(searchInput.value)">
+                  <i class="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+           
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+          <div class>
+            <div class="table-responsive">
+              <table class="table project-list-table align-middle table-nowrap dt-responsive nowrap w-100 table-borderless" id="projectList-table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 100px">#</th>
+                    <th scope="col">Interview Date</th>
+                    <th scope="col">meeting at</th>
+                    <th scope="col">Candidate</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">company</th>
+                    <th scope="col">Time</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(project of returnedArray;track $index){
+                  <tr>
+                   
+                    <td>
+                      <h5 class="text-truncate font-size-14">
+                        <a href="javascript: void(0);" class="text-dark">{{$index+1}}</a>
+                      </h5>
+                      
+                    </td>
+                    <td>{{project.interviewDate| date:'yyyy-MM-dd' }}</td>
+                    <td>{{project.time }}</td>
+                    <td>
+                     <span>{{project.interviewerName}}</span>
+                    </td>
+                    <td>
+                      
+                      <span>{{project.topic}}</span>
+                    </td>
+                    <td>
+                      
+                      <span>{{project.company}}</span>
+                    </td>
+                    <td>
+                      
+                      <span>30 min</span>
+                    </td>
+                  </tr>}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="pagination pagination-rounded justify-content-center mt-2 mb-5">
+            <pagination class="pagination-wrap hstack gap-2" [totalItems]="returnedArray?.length" [itemsPerPage]="6" (pageChanged)="pageChanged($event)"></pagination>
+          </ul>
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div>
+  </div>
+</div>

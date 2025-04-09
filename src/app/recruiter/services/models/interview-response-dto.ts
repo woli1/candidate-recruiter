@@ -7,4 +7,8 @@ export interface InterviewResponseDto {
   interviewDate?: string;
   minutes?: number;
   topic?: string;
+  description:string;
+  interviewerName:string;
+  candidateName:string;
+  time:string;
 }

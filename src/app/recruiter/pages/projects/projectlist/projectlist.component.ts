@@ -4,6 +4,8 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { Store } from '@ngrx/store';
 import { fetchprojectData } from 'src/app/recruiter/store/ProjectsData/project.actions';
 import { selectData } from 'src/app/recruiter/store/ProjectsData/project-selector';
+import { InterviewService } from 'src/app/recruiter/services/service/interview.service';
+import { InterviewResponseDto } from 'src/app/recruiter/services/models/interview-response-dto';
 
 @Component({
   selector: 'app-projectlist',
@@ -22,19 +24,22 @@ export class ProjectlistComponent implements OnInit {
   page: any = 1;
   endItem: any = 12;
   returnedArray: any;
-  projectlist: any
+  projectlist: InterviewResponseDto[];
 
-  constructor(public store: Store) { }
+  constructor(private interviewService:InterviewService,public store: Store) { }
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Projects' }, { label: 'Projects List', active: true }];
+    this.interviewService.getInterviewsWithRecruiter(102).subscribe({
+      next:response=>{
+        this.returnedArray=response;
+      },
+      error: error=>{
+        console.log(error);
+      }
 
-    this.store.dispatch(fetchprojectData());
-    this.store.select(selectData).subscribe(data => {
-      this.projectlist = data
-      this.returnedArray = data
-      this.projectlist = this.returnedArray.slice(0, 6);
-    });
+
+    })
+
   }
 
   pageChanged(event: PageChangedEvent): void {

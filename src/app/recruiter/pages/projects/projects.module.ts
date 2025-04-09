@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // routing
 import { ProjectsRoutingModule } from './projects-routing.module';
@@ -53,7 +53,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     SimplebarAngularModule,
     FlatpickrModule.forRoot(),
     PagetitleComponent,
-    DropzoneModule],
+    DropzoneModule,
+    ReactiveFormsModule],
   providers: [{
     provide: DROPZONE_CONFIG,
     useValue: DEFAULT_DROPZONE_CONFIG

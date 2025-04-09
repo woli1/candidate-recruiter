@@ -6,4 +6,6 @@ export interface InterviewRequestDto {
   interviewDate?: string;
   minutes?: number;
   topic?: string;
+  description:string;
+  time:string;
 }

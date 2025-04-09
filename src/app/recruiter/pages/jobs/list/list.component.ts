@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
     // store data
     //this.store.dispatch(fetchJoblistData());
     //this.store.select(selectData).subscribe(data => {
-    this.offerService.getAllOffers().subscribe(data=>{  
+    this.offerService.getOfferToRecruiter(1).subscribe(data=>{  
     this.lists = data
       this.joblist = data;
       this.lists = this.joblist.slice(0, 8)

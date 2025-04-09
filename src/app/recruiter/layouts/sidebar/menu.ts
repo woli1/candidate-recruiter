@@ -6,18 +6,18 @@ export const MENU: MenuItem[] = [
         label: 'MENUITEMS.MENU.TEXT',
         isTitle: true
     },
-    {
+    /*{
         id: 2,
         label: 'MENUITEMS.DASHBOARDS.TEXT',
         icon: 'bx-home-circle',
         subItems: [
             {
                 id: 3,
-                label: 'MENUITEMS.DASHBOARDS.LIST.DEFAULT',
-                link: '/dashboard',
+                label: 'profile',
+                link: '/recruiter/profile/1',
                 parentId: 2
             },
-       /*     {
+            {
                 id: 4,
                 label: 'MENUITEMS.DASHBOARDS.LIST.SAAS',
                 link: '/dashboards/saas',
@@ -40,9 +40,9 @@ export const MENU: MenuItem[] = [
                 label: 'MENUITEMS.DASHBOARDS.LIST.JOBS',
                 link: '/dashboards/jobs',
                 parentId: 2,
-            },*/
+            },
         ]
-    },
+    },*/
    /* {
         id: 8,
         isLayout: true
@@ -244,7 +244,7 @@ export const MENU: MenuItem[] = [
     },*/
     {
         id: 40,
-        label: 'MENUITEMS.PROJECTS.TEXT',
+        label: 'Interviews',
         icon: 'bx-briefcase-alt-2',
         subItems: [
           /*  {
@@ -255,8 +255,8 @@ export const MENU: MenuItem[] = [
             },*/
             {
                 id: 42,
-                label: 'MENUITEMS.PROJECTS.LIST.PROJECTLIST',
-                link: '/projects/list',
+                label: 'coming-interviews',
+                link: '/recruiter/interviews/list',
                 parentId: 40
             },
       /*      {
@@ -266,12 +266,12 @@ export const MENU: MenuItem[] = [
                 parentId: 40
             },
             */
-            {
+            /*{
                 id: 44,
                 label: 'MENUITEMS.PROJECTS.LIST.CREATE',
-                link: '/projects/create',
+                link: '/recruiter/projects/create',
                 parentId: 40
-            }
+            }*/
         ]
     },
  /*   {
@@ -357,8 +357,8 @@ export const MENU: MenuItem[] = [
         subItems: [
             {
                 id: 58,
-                label: 'MENUITEMS.JOBS.LIST.JOBLIST',
-                link: '/jobs/list',
+                label: 'my-jobs',
+                link: '/recruiter/jobs/list',
                 parentId: 57
             },
         /*   {

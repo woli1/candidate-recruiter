@@ -6,14 +6,17 @@ import { LayoutComponent } from './candidate/layouts/layout.component';
 import { Page404Component } from './candidate/extrapages/page404/page404.component';*/
 
 export const routes: Routes = [
-    /*{
+    {
         path: "candidate",
         loadChildren: () =>
-            import("./recruiter/candidate/candidate.module").then((m) => m.CandidateModule),
-    },*/
+            import("./candidate/recruiter.module").then((m) => m.RecruiterModule),
+    },
     {
         path: "recruiter",
         loadChildren: () =>
             import("./recruiter/recruiter.module").then((m) => m.RecruiterModule),
-    },{ path: "**", component: Page404Component },
+    },
+    
+    
+{ path: "**", component: Page404Component }
 ];

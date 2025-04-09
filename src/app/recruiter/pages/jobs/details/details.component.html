@@ -30,10 +30,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="hstack gap-2">
-                        <button class="btn btn-soft-primary w-100" (click)="apply(($event))">Apply Now</button>
-                        <button class="btn btn-soft-danger w-100">Contact Us</button>
-                    </div>
                 </div>
             </div>
 
@@ -64,5 +60,46 @@
             </div>
         </div><!--end col-->
     </div><!--end row-->
-
+    <div>
+        <h3>candidates applied to this job:</h3>
+        <div class="row">
+            @for(grid of returnedArray;track $index){
+            <div class=" col-xl-4 col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex">
+                    <div class="flex-grow-1 overflow-hidden">
+                      <h5 class="text-truncate font-size-15">
+                        <a href="javascript: void(0);" class="text-dark">{{grid.user.firstName}} {{grid.user.lastName}}</a>
+                      </h5>
+                      <p class="text-muted mb-4">{{grid.offer.description}}</p>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="px-4 py-3 border-top">
+                    <div class="col-4 btn btn-success" (click)="accept(($event),grid.id)" >
+                        ACCEPT  
+                    </div>
+                    <div class="col-4 btn btn-danger "(click)="refuse(($event),grid.id)" >
+                        REFEUSE  
+                    </div>
+                    <div class="col-4 btn btn-dark h-50" [routerLink]="'/recruiter/profile/'+grid.user.id" >
+                        view profil
+                    </div>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        
+          <div class="row">
+            <div class="col-lg-12">
+        
+              <ul class="pagination justify-content-end mb-2 pagination-rounded justify-content-center p-2">
+                <pagination class="pagination-wrap hstack gap-2" [totalItems]="returnedArray?.length" [itemsPerPage]="9" (pageChanged)="pageChanged($event)"></pagination>
+              </ul>
+            </div>
+          </div>
+    </div>
 </div>

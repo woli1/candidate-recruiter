@@ -1,20 +1,25 @@
 import { Component, OnInit, Input, EventEmitter, ViewChild, Output } from '@angular/core';
 import { member } from './data';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { InterviewService } from 'src/app/recruiter/services/service/interview.service';
+import { ActivatedRoute } from '@angular/router';
+import { onInitEffects } from '@ngrx/effects/src/lifecycle_hooks';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
+  
 })
 
 /**
  * Projects-create component
  */
-export class CreateComponent implements OnInit {
-
-  constructor() { }
+export class CreateComponent implements OnInit  {
+  id:number;
+  form:any;
   // bread crumb items
   breadCrumbItems: Array<{}>;
   selected: any;
@@ -28,75 +33,42 @@ export class CreateComponent implements OnInit {
 
   @ViewChild('dp', { static: true }) datePicker: any;
 
-  ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Projects' }, { label: 'Create New', active: true }];
 
-    this.selected = '';
-    this.hidden = true;
-    this.assignMember = member;
+  ngOnInit(): void {
+    this.id=Number(this.activatedRoute.snapshot.paramMap.get("id"));
+    this.form=this.formbuilder.group({
+      interviewDate:["",[Validators.required]],
+      topic:["",[Validators.required]],
+      time:["",[Validators.required]],
+      description:["",[Validators.required]]
+    })
+}
+
+  constructor(private formbuilder:FormBuilder,private activatedRoute:ActivatedRoute,private interviewService:InterviewService) { }
+
+
+  creataInterview() {
+    console.log(this.form.value);
+    this.interviewService.createInterview(102,this.id,this.form.value).subscribe({
+
+      next:response=>{
+        console.log(response);
+      },
+      error:error=>{
+        console.log(error);
+      }
+
+    });
   }
 
-  // File Upload
-  imageURL: any;
-  onSelect(event: any) {
-    this.files.push(...event.addedFiles);
-    let file: File = event.addedFiles[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageURL = reader.result as string;
-      setTimeout(() => {
-        // this.profile.push(this.imageURL)
-      }, 100);
-    }
-    reader.readAsDataURL(file)
-  }
+ 
 
-  assignList: any = []
-  slectMember(id: any) {
-    if (this.assignMember[id].checked == '0') {
-      this.assignMember[id].checked = '1'
-      this.assignList.push(this.assignMember[id])
-    } else {
-      this.assignMember[id].checked = '0'
-      this.assignList.pop(this.assignMember[id])
-    }
-  }
 
-  // filechange
-  imageURLs: any;
-  fileChange(event: any) {
-    let fileList: any = (event.target as HTMLInputElement);
-    let file: File = fileList.files[0];
-    const reader = new FileReader();
+  
 
-    reader.readAsDataURL(file)
-    reader.onload = () => {
-      this.imageURLs = reader.result as string;
 
-      document.querySelectorAll('#projectlogo-img').forEach((element: any) => {
-        element.src = this.imageURLs;
-      });
-    }
-  }
-  // file upload
-  public dropzoneConfig: DropzoneConfigInterface = {
-    clickable: true,
-    addRemoveLinks: true,
-    previewsContainer: false
-  };
 
-  uploadedFiles: any[] = [];
 
-  // File Upload
-  onUploadSuccess(event: any) {
-    setTimeout(() => {
-      this.uploadedFiles.push(event[0]);
-    }, 100);
-  }
-
-  // File Remove
-  removeFile(event: any) {
-    this.uploadedFiles.splice(this.uploadedFiles.indexOf(event), 1);
-  }
+  
 
 }

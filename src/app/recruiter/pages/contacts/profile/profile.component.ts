@@ -5,23 +5,25 @@ import { CommonModule } from '@angular/common';
 import { PagetitleComponent } from 'src/app/recruiter/shared/ui/pagetitle/pagetitle.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UserService } from 'src/app/recruiter/services/service/user.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserResponseDto } from 'src/app/recruiter/services/models/user-response-dto';
 import { HttpClient } from '@angular/common/http';
+import { InterviewService } from 'src/app/recruiter/services/service/interview.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone:true,
-  imports:[CommonModule,PagetitleComponent,NgApexchartsModule]
+  imports:[CommonModule,PagetitleComponent,NgApexchartsModule,RouterModule]
 })
 
 /**
  * Contacts-profile component
  */
 export class ProfileComponent implements OnInit {
-  constructor(private userService:UserService,private activatedRoute:ActivatedRoute,private http:HttpClient, private router:Router) { }
+
+  constructor(private interviewService:InterviewService,  private userService:UserService,private activatedRoute:ActivatedRoute,private http:HttpClient, private router:Router) { }
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Profile', active: true }];
 
@@ -37,6 +39,7 @@ export class ProfileComponent implements OnInit {
 
 
   selectedFile: File;
+  userRequestDto:any;
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -83,6 +86,9 @@ downloadfile(id:number){
   gotocandidacy() {
    this.id= Number(this.activatedRoute.snapshot.paramMap.get("id"));
 
-  this.router.navigateByUrl(`/jobs/apply/${this.id}`);
+  this.router.navigateByUrl(`/recruiter/jobs/apply/${this.id}`);
 }
+
+
+
 }

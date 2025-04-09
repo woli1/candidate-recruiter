@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../core/services/event.service';
 
-import { LayoutState, initialState } from 'src/app/store/layouts/layouts.reducer';
+import { LayoutState, initialState } from 'src/app/recruiter/store/layouts/layouts.reducer';
 import { Store } from '@ngrx/store';
-import { changeLayoutWidth, changeMode, changeSidebarMode } from 'src/app/store/layouts/layout.actions';
-import { getLayoutMode, getLayoutWidth, getsidebar } from 'src/app/store/layouts/layout.selector';
-import { RootReducerState } from 'src/app/store';
-import { changesLayout } from 'src/app/store/layouts/layout.actions';
+import { changeLayoutWidth, changeMode, changeSidebarMode } from 'src/app/recruiter/store/layouts/layout.actions';
+import { getLayoutMode, getLayoutWidth, getsidebar } from 'src/app/recruiter/store/layouts/layout.selector';
+import { RootReducerState } from 'src/app/recruiter/store';
+import { changesLayout } from 'src/app/recruiter/store/layouts/layout.actions';
 import { SimplebarAngularModule } from 'simplebar-angular';
 // import { RootReducerState } from 'src/app/store';
 

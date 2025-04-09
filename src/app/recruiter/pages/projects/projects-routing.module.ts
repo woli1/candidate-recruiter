@@ -20,7 +20,7 @@ const routes: Routes = [
         component: OverviewComponent
     },
     {
-        path: 'create',
+        path: 'create/:id',
         component: CreateComponent
     }
 ];

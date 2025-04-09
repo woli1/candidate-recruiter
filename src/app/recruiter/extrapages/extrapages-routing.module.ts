@@ -5,7 +5,7 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
 import { LockscreenComponent } from './lockscreen/lockscreen.component';
-import { Login2Component } from '../account/auth/login2/login2.component';
+
 import { ConfirmmailComponent } from './confirmmail/confirmmail.component';
 
 import { VerificationComponent } from './verification/verification.component';
@@ -29,10 +29,7 @@ const routes: Routes = [
         path: '500',
         component: Page500Component
     },
-    {
-        path: 'login-2',
-        component: Login2Component
-    },
+    
     {
         path: 'lock-screen-1',
         component: LockscreenComponent

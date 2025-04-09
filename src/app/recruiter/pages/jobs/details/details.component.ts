@@ -18,6 +18,9 @@ export class DetailsComponent implements OnInit {
 
 
   breadCrumbItems: Array<{}>;
+  endItem: number;
+  projectData: any;
+  returnedArray: any;
 
   constructor(private candidacyService:CandidacyService,private offerService:OfferService,private route:ActivatedRoute) { }
   id:number;
@@ -29,8 +32,20 @@ export class DetailsComponent implements OnInit {
       this.offer=data;
     })
 
+    this.candidacyService.getCandidacyByOffer(this.id).subscribe(
+    {
+      next : data=>{
+        this.returnedArray=data;
+      },
+      error: error=>{
+        console.log(error);
+      }
+    }
+
+    )
+
   }
-  apply(event:any) {
+  accept(event:any,id:number) {
 
       const swalWithBootstrapButtons = Swal.mixin({
           customClass: {
@@ -58,9 +73,9 @@ export class DetailsComponent implements OnInit {
               );
               event.target.closest('.card')?.remove();
               const offerId=Number(this.route.snapshot.paramMap.get('id'));
-                this.candidacyService.candidate(1,offerId).subscribe(data=>{
-                  console.log("response:",data.offerResponseDTO);
-                })
+              this.candidacyService.accept(id).subscribe(data=>{
+                console.log("response:",data);
+              },error=>console.log(error))
 
              
             } else if (
@@ -78,6 +93,62 @@ export class DetailsComponent implements OnInit {
     
     
   }
+  pageChanged(event: any): void {
+    const startItem = (event.page - 1) * event.itemsPerPage;
+    this.endItem = event.page * event.itemsPerPage;
+    this.projectData = this.returnedArray.slice(startItem, this.endItem);
+  }
+
+
+refuse(event:any,id:number) {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger ms-2'
+        },
+        buttonsStyling: false
+      });
+  
+      swalWithBootstrapButtons
+        .fire({
+          title: 'Are you sure?',
+          text: 'You want to refuse this Candidacy',
+          icon: 'warning',
+          confirmButtonText: 'Yes, ',
+          cancelButtonText: 'No, cancel!',
+          showCancelButton: true
+        })
+        .then(result => {
+          if (result.value) {
+            swalWithBootstrapButtons.fire(
+              
+              'you have refused this candidacy',
+              'success'
+            );
+            event.target.closest('.card')?.remove();
+            const offerId=Number(this.route.snapshot.paramMap.get('id'));
+              this.candidacyService.reject(id).subscribe(data=>{
+                console.log("response:",data);
+              },error=>console.log(error))
+
+           
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelled',
+              
+              'error'
+            );
+          }
+        });
+
+  
+  
+}
+  
   
 
 

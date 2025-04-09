@@ -68,49 +68,7 @@ export class UsergridComponent implements OnInit {
     this.modalRef = this.modalService.show(content);
   }
   navigate(id:string){
-    this.router.navigateByUrl('/contacts/profile/'+id);
-  }
-
-remove(event: any,id:number) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger ms-2'
-      },
-      buttonsStyling: false
-    });
-
-    swalWithBootstrapButtons
-      .fire({
-        title: 'Are you sure?',
-        text: 'You won\'t be able to revert this!',
-        icon: 'warning',
-        confirmButtonText: 'Yes, delete the user!',
-        cancelButtonText: 'No, cancel!',
-        showCancelButton: true
-      })
-      .then(result => {
-        if (result.value) {
-          swalWithBootstrapButtons.fire(
-            'Deleted!',
-            'the user  has been deleted.',
-            'success'
-          );
-          event.target.closest('.card')?.remove();
-          console.log(id);
-          this.userService.deleteUser(id).subscribe(  response => console.log('Success:', response),
-          error => console.error('Error:', error))
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Your User is still persisted :)',
-            'error'
-          );
-        }
-      });
+    this.router.navigateByUrl('/recruiter/contacts/profile/'+id);
   }
 
 

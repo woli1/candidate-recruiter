@@ -12,10 +12,10 @@ export class InterviewService {
   constructor(private http:HttpClient) { }
 
   createInterview(recruiterId:number,candidateId:number,interviewRequestDto:InterviewRequestDto):Observable<InterviewResponseDto>{
-    const params=new HttpParams();
-    params.set('recruiterId',recruiterId);
-    params.set('candidateId',candidateId);
-    return this.http.post<InterviewResponseDto>(this.apiUrl,interviewRequestDto,{params});
+    const params=new HttpParams()
+    .set('recruiterId',recruiterId)
+    .set('candidateId',candidateId);
+    return this.http.post<InterviewResponseDto>(`${this.apiUrl}`,interviewRequestDto,{params});
   }
   updateInterview(id:number,interviewRequestDto:InterviewRequestDto):Observable<InterviewResponseDto>{
     return this.http.put<InterviewResponseDto>(`${this.apiUrl}/${id}`,interviewRequestDto);
