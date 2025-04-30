@@ -35,7 +35,7 @@
                   <alert type="success" [dismissible]="false">Registration successful.</alert>
                 </div>
                 <div *ngIf="error">
-                  <alert type="danger" [dismissible]="false">{{ error }}</alert>
+                  <alert type="danger" [dismissible]="false"></alert>
                 </div>
               
                 <!-- First Name -->
@@ -65,11 +65,7 @@
                 </div>
               
                 <!-- Personal Information -->
-                <div class="mb-3">
-                  <label for="personalInformation" class="form-label">Personal Information</label>
-                  <input type="text" formControlName="personalInformation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.personalInformation.errors }" id="personalInformation" placeholder="Personal information" />
-                  
-                </div>
+               
               
                 <!-- Function -->
                 <div class="mb-3">

@@ -29,7 +29,7 @@ export class ProjectlistComponent implements OnInit {
   constructor(private interviewService:InterviewService,public store: Store) { }
 
   ngOnInit() {
-    this.interviewService.getInterviewsWithRecruiter(102).subscribe({
+    this.interviewService.getInterviewsWithRecruiter(1).subscribe({
       next:response=>{
         this.returnedArray=response;
       },

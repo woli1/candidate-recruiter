@@ -27,10 +27,11 @@
                     <th scope="col" style="width: 100px">#</th>
                     <th scope="col">Interview Date</th>
                     <th scope="col">meeting at</th>
-                    <th scope="col">Candidate</th>
+                    <th scope="col">Recruiter</th>
                     <th scope="col">Topic</th>
                     <th scope="col">company</th>
                     <th scope="col">Time</th>
+                    <th scope="col">meet link</th>
                     
                   </tr>
                 </thead>
@@ -60,6 +61,9 @@
                     <td>
                       
                       <span>30 min</span>
+                    </td>
+                    <td>
+                      <span *ngIf="!isMeetingActive(project.time)"><a href="https://elitetech.daily.co/supervision" target="_blank">room{{$index+1}}</a></span>
                     </td>
                   </tr>}
                 </tbody>

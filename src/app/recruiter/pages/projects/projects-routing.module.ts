@@ -12,7 +12,7 @@ const routes: Routes = [
         component: ProjectgridComponent
     },
     {
-        path: 'list',
+        path: 'list11',
         component: ProjectlistComponent
     },
     {

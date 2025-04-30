@@ -178,7 +178,7 @@ export class ListComponent implements OnInit {
     var type = (document.getElementById('idType') as HTMLInputElement).value;
     if (type) {
       this.lists = this.joblist.filter((es: any) => {
-        return es.type === type
+        return es.jobType === type
       })
     } else {
       this.lists = this.joblist

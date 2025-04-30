@@ -9,7 +9,7 @@ import { DefaultComponent } from './dashboards/default/default.component';
 const routes: Routes = [
   // { path: '', redirectTo: 'dashboard' },
   {
-    path: "",
+    path: "jobs",
     component: DefaultComponent
   },
   { path: 'dashboard', component: DefaultComponent },

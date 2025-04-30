@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <app-page-title title="Jobs List" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  
 
   <div class="row">
     <div class="col-12">
@@ -29,15 +29,7 @@
                 <option value="Freelance">Freelance</option>
               </select>
             </div>
-            <div class="col-xxl-2 col-lg-4">
-              <div id="datepicker1">
-                <input type="text" placeholder="Datepicker" class="form-control " [(ngModel)]="searchTerm" bsDatepicker [bsConfig]="{ showWeekNumbers: false } ">
-
-              </div><!-- input-group -->
-            </div>
-            <div class="col-xxl-2 col-lg-4">
-              <button type="button" class="btn btn-soft-secondary w-100" (click)="performSearch()"><i class="mdi mdi-filter-outline align-middle"></i> Filter</button>
-            </div>
+            
           </div>
         </div>
         <div class="card-body">
@@ -65,10 +57,10 @@
                   <td>{{data.titleJob}}</td>
                   <td>{{data.company}}</td>
                   <td>{{data.location}}</td>
-                  <td>{{data.experince}}</td>
+                  <td>{{data.experience}}</td>
                   <td>{{data.categorie}}</td>
-                  <td><span class="badge badge-soft-{{data.type_color}}" [ngClass]="{'badge-soft-success': data.jobType === 'Full Time','badge-soft-danger': data.jobType === 'Part Time','badge-soft-info': data.jobType === 'Freelance','badge-soft-warning': data.jobType === 'Internship'}">{{data.jobType}}</span></td>
-                  <td>{{data.createdAt}}</td>
+                  <td><span class="badge badge-soft-{{data.type_color}}" [ngClass]="{'badge-soft-success': data.jobType === 'FULLTIME','badge-soft-danger': data.jobType === 'PARTTIME','badge-soft-info': data.jobType === 'FREELANCE','badge-soft-warning': data.jobType === 'INTERNSHIP'}">{{data.jobType}}</span></td>
+                  <td>{{data.createdAt|date:'fullDate'}}</td>
                   
                   <td>
                     <ul class="list-unstyled hstack gap-1 mb-0">
@@ -258,8 +250,8 @@
       <div class="mb-3">
         <label for="payment-field" class="form-label">contractType</label>
         <select class="form-control" data-trigger name="payment-method" id="payment-field" formControlName="contractType" [ngClass]="{ 'is-invalid': submitted && form['type'].errors }">
-          <option value="CDD">Full Time</option>
-          <option value="CDI">Part Time</option>
+          <option value="CDD">CDD</option>
+          <option value="CDI">CDI</option>
         </select>
         @if(submitted && form['type'].errors){
         <div class="invalid-feedback" align="left">

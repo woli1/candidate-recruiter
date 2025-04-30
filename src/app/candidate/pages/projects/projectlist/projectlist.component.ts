@@ -29,7 +29,7 @@ export class ProjectlistComponent implements OnInit {
   constructor(private interviewService:InterviewService,public store: Store) { }
 
   ngOnInit() {
-    this.interviewService.getInterviewWithCandidate(1).subscribe({
+    this.interviewService.getInterviewWithCandidate(2).subscribe({
       next:response=>{
         this.returnedArray=response;
         this.projectlist=response;
@@ -58,5 +58,13 @@ export class ProjectlistComponent implements OnInit {
       this.returnedArray = this.projectlist
     }
 
+  }
+  isMeetingActive(time:string): boolean {
+    const currentTime = new Date();
+    const startTime = new Date(time);
+    const endTime = new Date(startTime.getTime()+30*60*1000);
+
+    // Check if the current time is between start and end times
+    return currentTime >= startTime && currentTime <= endTime;
   }
 }

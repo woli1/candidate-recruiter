@@ -49,7 +49,7 @@ export class CreateComponent implements OnInit  {
 
   creataInterview() {
     console.log(this.form.value);
-    this.interviewService.createInterview(102,this.id,this.form.value).subscribe({
+    this.interviewService.createInterview(1,this.id,this.form.value).subscribe({
 
       next:response=>{
         console.log(response);

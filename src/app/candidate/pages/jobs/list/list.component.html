@@ -23,21 +23,13 @@
             <div class="col-xxl-2 col-lg-4">
               <select class="form-select" id="idType" aria-label="Default select example" (click)="selectType()">
                 <option value="">Select Type</option>
-                <option value="Full Time">Full Time</option>
-                <option value="Part Time">Part Time</option>
-                <option value="Internship">Internship</option>
-                <option value="Freelance">Freelance</option>
+                <option value="FULLTIME">Full Time</option>
+                <option value="PARTTIME">Part Time</option>
+                <option value="INTERNSHIP">Internship</option>
+                <option value="FREELANCE">Freelance</option>
               </select>
             </div>
-            <div class="col-xxl-2 col-lg-4">
-              <div id="datepicker1">
-                <input type="text" placeholder="Datepicker" class="form-control " [(ngModel)]="searchTerm" bsDatepicker [bsConfig]="{ showWeekNumbers: false } ">
-
-              </div><!-- input-group -->
-            </div>
-            <div class="col-xxl-2 col-lg-4">
-              <button type="button" class="btn btn-soft-secondary w-100" (click)="performSearch()"><i class="mdi mdi-filter-outline align-middle"></i> Filter</button>
-            </div>
+            
           </div>
         </div>
         <div class="card-body">
@@ -67,7 +59,7 @@
                   <td>{{data.location}}</td>
                   <td>{{data.experince}}</td>
                   <td>{{data.categorie}}</td>
-                  <td><span class="badge badge-soft-{{data.type_color}}" [ngClass]="{'badge-soft-success': data.jobType === 'Full Time','badge-soft-danger': data.jobType === 'Part Time','badge-soft-info': data.jobType === 'Freelance','badge-soft-warning': data.jobType === 'Internship'}">{{data.jobType}}</span></td>
+                  <td><span class="badge badge-soft-{{data.type_color}}" [ngClass]="{'badge-soft-success': data.jobType === 'FULLTIME','badge-soft-danger': data.jobType === 'PARTTIME','badge-soft-info': data.jobType === 'FREELANCE','badge-soft-warning': data.jobType === 'INTERNSHIP'}">{{data.jobType}}</span></td>
                   <td>{{data.createdAt}}</td>
                   
                   <td>
